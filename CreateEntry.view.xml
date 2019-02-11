@@ -1,0 +1,65 @@
+<mvc:View
+	controllerName="templatemanager.controller.CreateEntry"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns:semantic="sap.m.semantic"
+	displayBlock="true">
+	<semantic:DetailPage
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		title="{i18n>createEntryTitle}">
+		<form:SimpleForm id="simpleForm"
+			editable = "true">
+			<form:content>
+				<Label
+				text="{i18n>enterPhaseTitle}"/>
+				<ComboBox
+				id = "comboBox"
+				placeholder="{i18n>placeholderPhaseTitle}"
+				width="350px"
+				items = "{
+					path : 'phaseModel>/results',
+					sorter : {
+						path : 'phase'
+						}
+					}"
+				valueStateText="{i18n>phaseValueStateText}"
+				value = "{
+					path : 'odata>Phase',
+					type: 'sap.ui.model.type.String',
+					constraints: {
+						maxLength: 255,
+						search: '^\\S+\\S$'
+						}
+					}"
+				required="true"
+				change="onChange">
+				<core:Item text="{phaseModel>phase}"/>
+				</ComboBox>
+				<Label
+				text="{i18n>enterPercentTitle}"/>
+				<Input
+				id="entryPercent"
+				width="700px"
+				placeholder="{i18n>placeholderPercentTitle}"
+				description="%"
+				required="true"
+				valueStateText="{i18n>percentCompleteValueStateText}"
+				value="{
+					path: 'odata>PercentComplete',
+					type: 'sap.ui.model.type.Integer',
+					constraints: {
+						minimum: 2,
+						maximum: 99
+					}
+				}"
+				change="onChange"/>
+			</form:content>
+		</form:SimpleForm>
+		<semantic:saveAction>
+			<semantic:SaveAction id="createButton" press="createEntry"/>
+		</semantic:saveAction>
+	</semantic:DetailPage>
+</mvc:View>

@@ -1,0 +1,67 @@
+<mvc:View
+	id="edit-template-view"
+	controllerName="templatemanager.controller.EditTemplate"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic"
+	xmlns:f="sap.ui.layout.form"
+	displayBlock="true">
+	<semantic:DetailPage 
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		title="{i18n>editTemplateTitle}">
+		<f:SimpleForm
+			editable = "true">
+			<f:content>
+				<Label 
+					text="{i18n>label2}"/>
+				<Input 
+					id="type-input"
+					width="54em"
+					value="{odata>Type}"
+					description=" "
+					liveChange="onChange"/>
+				<Label
+					text="{i18n>label3}"/>
+				<Input 
+					id="name-input"
+					width="54em"
+					value="{odata>Name}"
+					description=" "
+					liveChange="onChange"/>
+				<Label 
+					text="{i18n>label1}"/>
+				<ComboBox
+					id="classification-input"
+					width="27em"
+					value="{odata>Classification}"
+					items = "{
+							path : 'applicationTypes>/types',
+							sorter : {
+								path: 'ApplicationType'
+								}
+						}"
+					valueStateText="{i18n>valueStateTextApplicationType}"
+					change="onChangeComboBox">
+					<core:Item text="{applicationTypes>ApplicationType}"/>
+				</ComboBox>
+				<Label 
+					text="{i18n>label4}"/>
+				<Input 
+					id="board-input"
+					width="54em"
+					value="{odata>TemplateBoardId}"
+					description=" "
+					liveChange="onChange"/>
+			</f:content>
+		</f:SimpleForm>
+		<semantic:saveAction>
+			<semantic:SaveAction id="save-button" press="onSave"/>
+		</semantic:saveAction>
+		<semantic:deleteAction>
+			<semantic:DeleteAction press="onDelete"/>
+		</semantic:deleteAction>
+	</semantic:DetailPage>
+</mvc:View>
+	

@@ -1,0 +1,91 @@
+<mvc:View
+   controllerName="templatemanager.controller.EditEntry"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc"
+   xmlns:f="sap.ui.layout.form"
+   xmlns:semantic="sap.m.semantic"
+   displayBlock="true">
+	<semantic:DetailPage 
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		title="{i18n>editEntryTitle}">
+		<f:SimpleForm
+			width="auto"
+			class="sapUiResponsiveMargin"
+			editable = "true">
+		<f:content>
+		<Label
+			text="Phase"/>
+		<Input
+			id="updatePhase"
+			editable="{editModel>/isEditable}"
+			valueStateText="{i18n>phaseValueStateText}"
+			value="{
+				path: 'odata>Phase',
+				type: 'sap.ui.model.type.String',
+				constraints: {
+					maxLength: 255,
+					search: '^\\S+\\S$'
+				}
+			}"
+			description=" "
+			width="auto"
+			liveChange="onChange"/>
+<!--		<Label
+			text="Points"/>
+		<Input
+			id="updatePoints"
+			value="{odata>Points}"
+			description="points"
+			width="auto"/>-->
+		<Label
+			text="Percent Complete"/>
+		<Input
+			id="updatePercent"
+			valueStateText="{i18n>percentCompleteValueStateText}"
+			value="{
+				path: 'odata>PercentComplete',
+				type: 'sap.ui.model.type.Integer',
+				constraints: {
+					minimum: 2,
+					maximum: 99
+				}
+				}"
+			description="%"
+			width="auto"
+			editable="{editModel>/isEditable}"
+			liveChange="onChange"/>
+		</f:content>
+		</f:SimpleForm>
+<!--		
+		<Button
+			id="saveButton1"
+			icon="sap-icon://save"
+			text="{i18n>saveEntryButton}"
+			class="sapUiMediumMargin"
+			type="Emphasized"
+			enabled="{editModel>/isEnabled}"
+			press="Save"/>
+		<Button
+			id="deleteButton1"
+			icon="sap-icon://less"
+			text="Delete Entry"
+			class="sapUiMediumMargin"
+			type="Reject"
+			press="removeEntry"/>
+-->
+		<semantic:saveAction>
+		<semantic:SaveAction 
+			id="save-button"
+			class="sapUiMediumMargin"
+			press="Save"/>
+		</semantic:saveAction>
+		<semantic:deleteAction>
+		<semantic:DeleteAction 	
+			id="delete-button"
+			class="sapUiMediumMargin"
+			press="removeEntry"/>
+		</semantic:deleteAction>
+
+	</semantic:DetailPage>
+</mvc:View>

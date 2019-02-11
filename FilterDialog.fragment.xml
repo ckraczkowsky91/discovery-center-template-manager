@@ -1,0 +1,28 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core" >
+   <ViewSettingsDialog
+		id = "filter-dialog"
+		confirm = "handleFilterDialogConfirm">
+   		<filterItems>
+   			<ViewSettingsFilterItem
+   				id="filter-items-name"
+   				text="{i18n>label3}"
+   				items="{odata>/ApplicationTypes}"
+   				key="Name">
+   				<items>
+   					<ViewSettingsItem text="{odata>Name}"/>
+   				</items>
+   			</ViewSettingsFilterItem>
+   			<ViewSettingsFilterItem
+   				id="filter-items-classification"
+   				text="{i18n>label1}"
+   				items="{applicationTypes>/types}"
+   				key="Classification">
+   				<items>
+					<ViewSettingsItem text="{applicationTypes>ApplicationType}" key="ApplicationType"/>
+				</items>
+   			</ViewSettingsFilterItem>
+   		</filterItems>
+   </ViewSettingsDialog>
+</core:FragmentDefinition>

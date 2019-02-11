@@ -1,0 +1,86 @@
+<mvc:View
+   controllerName="templatemanager.controller.Detail"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc"
+   xmlns:semantic="sap.m.semantic"
+   displayBlock="true">
+	<semantic:DetailPage 
+		title="{i18n>detailPageTitle}"
+		showNavButton="true"
+		navButtonPress="onNavBack">
+		<ObjectHeader
+			title="{odata>Type}">
+			<attributes>
+				<ObjectAttribute
+					title="{i18n>label3}"
+					text="{odata>Name}"/>
+				<ObjectAttribute
+					title="{i18n>label1}"
+					text="{odata>Classification}"/>
+				<ObjectAttribute
+					title="{i18n>label4}"
+					text="{odata>TemplateBoardId}"/>
+			</attributes>
+		</ObjectHeader>
+		<Table
+		items="{
+			path : 'odata>ApplicationTypeTemplateDetails',
+			sorter : {
+				path : 'PercentComplete'
+				}
+			}"
+		width="auto"
+		class="sapUiResponsiveMargin"
+		id="table">
+			<headerToolbar>
+				<Toolbar>
+					<Title text="{i18n>tableTitle}"/>
+					<ToolbarSpacer/>
+					<Button
+						icon="sap-icon://add"
+						tooltip="{i18n>createButtonTooltip}"
+						press="goCreateEntry"/>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="Phase"/>
+				</Column>
+<!--				<Column>
+					<Text text="Points"/>
+				</Column>-->
+				<Column>
+					<Text text="Percent Complete"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Navigation" press="editEntry">
+					<cells>
+						<ObjectListItem
+							title="{odata>Phase}"/>
+<!--						<ObjectListItem
+							title="{odata>Points}"/>-->
+						<ObjectListItem
+							title="{odata>PercentComplete}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<!--<Button-->
+		<!--	icon="sap-icon://add"-->
+		<!--	text="{i18n>createEntryButton}"-->
+		<!--	class="sapUiMediumMargin"-->
+		<!--	type="Accept"-->
+		<!--	press="goCreateEntry"/>-->
+		<!--<Button -->
+		<!--	icon="sap-icon://less"-->
+		<!--	text="{i18n>deleteMissionTypeButton}"-->
+		<!--	class="sapUiMediumMargin"-->
+		<!--	type="Reject"-->
+		<!--	press="Delete"/>-->
+		<semantic:editAction>
+			<semantic:EditAction
+				press="editTemplate"/>
+		</semantic:editAction>
+	</semantic:DetailPage>
+</mvc:View>

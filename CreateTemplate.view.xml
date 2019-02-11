@@ -1,0 +1,74 @@
+<mvc:View
+   controllerName="templatemanager.controller.CreateTemplate"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc"
+   xmlns:form="sap.ui.layout.form"
+   xmlns:core="sap.ui.core"
+   xmlns:semantic="sap.m.semantic"
+   displayBlock="true">
+	<semantic:DetailPage 
+		title="{i18n>createTemplateTitle}"
+		showNavButton="true"
+		navButtonPress="onNavBack">
+			<form:SimpleForm
+				editable="true">
+				<form:content>
+					<Label
+						text="{i18n>label2}"/>
+					<Input 
+						id="phase-type"
+						value="{odata>Type}"
+						width="500px"
+						required="true"
+						placeholder="{i18n>placeholderPhaseType}"/>
+					<Label
+						text="{i18n>label3}"/>
+					<Input
+						id="name"
+						value="{odata>Name}"
+						width="500px"
+						required="true"
+						placeholder="{i18n>placeholderName}"/>
+						<!--<Label-->
+						<!--text="{i18n>label1}"/>-->
+						<!--<Select-->
+						<!--id="app-type"-->
+						<!--width="500px"-->
+						<!--items = "{-->
+						<!--	path : 'applicationTypes>/types',-->
+						<!--	sorter : {-->
+						<!--		path: 'ApplicationType'-->
+						<!--		}-->
+						<!--}">-->
+						<!--	<core:Item text="{applicationTypes>ApplicationType}"/>-->
+						<!--</Select>-->
+					<Label
+						text="{i18n>label1}"/>
+					<ComboBox
+						id="app-type"
+						width="500px"
+						placeholder="{i18n>placeholderApplicationType}"
+						items = "{
+							path : 'applicationTypes>/types',
+							sorter : {
+								path: 'ApplicationType'
+								}
+						}"
+						valueStateText="{i18n>valueStateTextApplicationType}"
+						change="_onChange">
+							<core:Item text="{applicationTypes>ApplicationType}"/>
+					</ComboBox>
+					<Label
+						text="{i18n>label4}"/>
+					<Input 
+						id="master-board-id"
+						width="500px"
+						required="false"
+						placeholder="{i18n>placeholderMasterBoardID}"/>
+					</form:content>
+		</form:SimpleForm>
+		<semantic:saveAction>
+			<semantic:SaveAction id="save-button" press="createTemplate"/>
+		</semantic:saveAction>
+	</semantic:DetailPage>
+</mvc:View>

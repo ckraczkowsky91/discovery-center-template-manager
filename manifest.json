@@ -1,0 +1,142 @@
+{
+	"_version": "1.8.0",
+	"sap.app": {
+		"id": "templatemanager",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			"odataRemote": {
+				"uri": "/platformx_v1/protected/platformx.svc/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "templatemanager.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "rootApp"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30",
+			"libs": {
+				"sap.m": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "templatemanager.i18n.i18n"
+				}
+			},
+			"odata": {
+				"dataSource": "odataRemote",
+				"preload": true
+			},
+			"phaseModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": ""
+			},
+			"applicationTypes": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/applicationTypes.json"
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "templatemanager.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "overview",
+					"name": "overview",
+					"target": "overview"
+				},
+				{
+					"pattern": "manage",
+					"name": "manage",
+					"target": "detail"
+				},
+				{
+					"pattern": "detail/{typePath}",
+					"name": "detail",
+					"target": "detail"
+				},
+				{
+					"pattern": "create",
+					"name": "create",
+					"target": "create"
+				},
+				{
+					"pattern": "createEntry/{createPath}",
+					"name": "createEntry",
+					"target": "createEntry"
+				},
+				{
+					"pattern": "edit/{entryPath}",
+					"name": "edit",
+					"target": "edit"
+				},
+				{
+					"pattern": "editTemplate/{entryPath}",
+					"name": "editTemplate",
+					"target": "editTemplate"
+				}
+			],
+			"targets": {
+				"overview": {
+					"viewID": "rootApp",
+					"viewName": "App"
+				},
+				"detail": {
+					"viewID": "detail",
+					"viewName": "Detail"
+				},
+				"create": {
+					"viewID": "create",
+					"viewName": "CreateTemplate"
+				},
+				"createEntry": {
+					"viewID": "createEntry",
+					"viewName": "CreateEntry"
+				},
+				"edit": {
+					"viewID": "edit",
+					"viewName": "EditEntry"
+				},
+				"editTemplate": {
+					"viewID": "editTemplate",
+					"viewName": "EditTemplate"
+				}
+			}
+		}
+	},
+	"sap.platform.hcp": {
+		"uri": "",
+		"_version": "1.1.0"
+	}
+}

@@ -1,0 +1,46 @@
+<mvc:View
+   controllerName="templatemanager.controller.App"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc"
+   xmlns:semantic="sap.m.semantic"
+   displayBlock="true">
+   <App id="app">
+      <pages>
+         <Page title="{i18n>homePageTitle}">
+    		<Table 
+			id="templateList"
+			class="sapUiResponsiveMargin"
+			width="auto"
+		    items="{
+		    	path : 'odata>/ApplicationTypes'
+		      }">
+			<!--the following code replaces our declaration of the sap.m.TableHeader in the JS view-->
+			<!--in XML we give ids to the various controls so they can be accessed by their id in other scripts-->
+			<headerToolbar>
+				<Toolbar>
+					<Title text="{i18n>tableDescription}"/>
+					<ToolbarSpacer/>
+					<Button tooltip="{i18n>createMissionTypeButton}" icon="sap-icon://add" press="goCreate"/>
+					<Button tooltip="View Filter Settings" icon="sap-icon://filter" press="handleFilterButtonPressed"/>
+			      	<SearchField width="25%" search="onFilterTemplates"/>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column><header><Text text="{i18n>label2}" /></header></Column>
+				<Column><header><Text text="{i18n>label3}" /></header></Column>
+				<Column><header><Text text="{i18n>label1}" /></header></Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Navigation" press="seeDetail">
+					<cells>
+						<ObjectIdentifier text="{odata>Type}" />
+						<ObjectIdentifier text="{odata>Name}" />
+						<ObjectIdentifier text="{odata>Classification}" />
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+         </Page>
+      </pages>
+   </App>
+</mvc:View>

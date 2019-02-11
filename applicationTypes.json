@@ -1,0 +1,8 @@
+{
+	"types": [
+		{"ApplicationType": "app"},
+		{"ApplicationType": "serviced"},
+		{"ApplicationType": "platform"},
+		{"ApplicationType": "onboarding"}
+		]
+}
