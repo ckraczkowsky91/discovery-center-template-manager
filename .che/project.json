@@ -1,0 +1,1 @@
+{"type":"sap.web","builders":{"configs":{}},"runners":{"configs":{}},"attributes":{"sap.watt.common.setting":["{\"hcpdeploy\":{\"account\":\"d1b6a0fc1\",\"name\":\"templatemanager\",\"lastVersionWeTriedToDeploy\":\"1.0.8\"}}"]},"mixinTypes":[]}
